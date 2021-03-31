@@ -16,7 +16,9 @@ userPromis.then(data => {
     let gridView = new GridView();
     gridView._header = 'TEST';
     gridView._headerClass = ['header', 'sitr-class'];
-
+    gridView._tableClass = ['table'];
+    gridView._userData = data;
     gridView.render();
-
+    
+    console.log(gridView);
 });

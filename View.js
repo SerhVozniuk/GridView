@@ -5,6 +5,7 @@ class GridView{
         this._tableClass = [],
         this.element = 'body',
         this.attribute
+        this._userData = [];
     }
 
     set header(header) {
@@ -22,6 +23,18 @@ class GridView{
         }
         return false
     }
+    set tableClass(tableClass) {
+        if(typeof tableClass === 'object'){
+            this._tableClass = tableClass;
+            return true;
+        }
+        return false
+    }
+
+    set userData (data) {
+        this._userData = data;
+        return true;
+    }
 
     render(){
         //show header
@@ -33,5 +46,24 @@ class GridView{
             });
             document.querySelector(this.element).append(header);
         }
+        //show Table
+        const table = document.createElement('table');
+        this._tableClass.forEach(cssClass =>{
+            table.classList.add(cssClass);
+        })
+        //document.querySelector(this.element).append(table);
+        //create table header
+
+        let trHeader = document.createElement('tr');
+        for(let i = 0; i < this._userData.length; i++) {
+            for(let key in this._userData[i]){
+                let th = document.createElement('th');
+                th.textContent = key;
+                trHeader.append(th);
+            }
+        }
+        
+        table.append(trHeader);
+        document.querySelector(this.element).append(table);
     }
 }
