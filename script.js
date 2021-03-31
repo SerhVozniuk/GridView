@@ -9,4 +9,14 @@ let userPromis = new Promise((resolve, reject) =>{
 });
 
 
-userPromis.then(data => console.log(data));
+userPromis.then(data => {
+    console.log(data);
+
+    //создаем обьект класа
+    let gridView = new GridView();
+    gridView._header = 'TEST';
+    gridView._headerClass = ['header', 'sitr-class'];
+
+    gridView.render();
+
+});
