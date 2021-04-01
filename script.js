@@ -10,7 +10,7 @@ let userPromis = new Promise((resolve, reject) =>{
 
 
 userPromis.then(data => {
-    console.log(data);
+    //console.log(data);
 
     //создаем обьект класа
     let gridView = new GridView();
@@ -18,7 +18,30 @@ userPromis.then(data => {
     gridView._headerClass = ['header', 'sitr-class'];
     gridView._tableClass = ['table'];
     gridView._userData = data;
-    gridView.render();
+    gridView.attribute ={
+        id: {
+            lable: 'ID'
+        },
+        name: {
+            lable: 'name'
+        },
+        username: {
+            lable: 'username'
+        },
+        email: {
+            lable: 'email'
+        },
+       
+        phone: {
+            lable: 'phone'
+        },
+        website: {
+            lable: 'website'
+        },
+       
+    };
     
-    console.log(gridView);
+    gridView.render();
+
 });
+

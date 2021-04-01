@@ -4,7 +4,7 @@ class GridView{
         this._headerClass = [],
         this._tableClass = [],
         this.element = 'body',
-        this.attribute
+        this.attribute = [],
         this._userData = [];
     }
 
@@ -55,15 +55,37 @@ class GridView{
         //create table header
 
         let trHeader = document.createElement('tr');
-        for(let i = 0; i < this._userData.length; i++) {
-            for(let key in this._userData[i]){
+            for(let key in this.attribute){
                 let th = document.createElement('th');
-                th.textContent = key;
+                if(this.attribute[key].lable) {
+                    th.textContent = this.attribute[key].lable;
+                }
+                else{
+                    th.textContent = key;
+                }
                 trHeader.append(th);
             }
-        }
-        
         table.append(trHeader);
+        //document.querySelector(this.element).append(table);
+
+        //draw table
+
+        for(let i = 0; i < this._userData.length; i++){
+            let dataArr = this._userData[i];
+            let tr = document.createElement('tr');
+            for(let key in this.attribute){
+                let td = document.createElement('td');
+                let value = dataArr[key];
+                if(this.attribute[key].value){
+                    td.textContent  = this.attribute[key].value[dataArr];
+                }
+                else{
+                    td.textContent = value;
+                }
+                tr.append(td);
+            }
+            table.append(tr);
+        }
         document.querySelector(this.element).append(table);
     }
 }
